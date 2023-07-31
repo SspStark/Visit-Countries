@@ -111,18 +111,15 @@ class App extends Component {
       <p>No Countries Visited Yet</p>
     ) : (
       <ul>
-        {visitedCountries.map(each => {
-          const onClickRemove = () => this.removeCountry(each.id)
-          return (
-            <li key={each.id}>
-              <img src={each.imageUrl} alt="thumbnail" />
-              <p>{each.name}</p>
-              <button type="button" onClick={onClickRemove}>
-                Remove
-              </button>
-            </li>
-          )
-        })}
+        {visitedCountries.map(each => (
+          <li key={each.id}>
+            <img src={each.imageUrl} alt="thumbnail" />
+            <p>{each.name}</p>
+            <button type="button" onClick={() => this.removeCountry(each.id)}>
+              Remove
+            </button>
+          </li>
+        ))}
       </ul>
     )
   }
@@ -133,21 +130,21 @@ class App extends Component {
       <div>
         <h1>Countries</h1>
         <ul>
-          {countriesList.map(each => {
-            const displayCountry = () => this.showCountryImage(each)
-            return (
-              <li key={each.id}>
-                <p>{each.name}</p>
-                {each.isVisited ? (
-                  <p>Visited</p>
-                ) : (
-                  <button type="button" onClick={displayCountry}>
-                    Visit
-                  </button>
-                )}
-              </li>
-            )
-          })}
+          {countriesList.map(each => (
+            <li key={each.id}>
+              <p>{each.name}</p>
+              {each.isVisited ? (
+                <p>Visited</p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => this.showCountryImage(each)}
+                >
+                  Visit
+                </button>
+              )}
+            </li>
+          ))}
         </ul>
         <h1>Visited Countries</h1>
         {this.renderVisitedCountries()}
